@@ -1,19 +1,25 @@
 import React from "react";
+import { Link } from "expo-router";
 import { Image, StyleSheet, TouchableOpacity } from "react-native";
+import { Product } from "../../../../utils/types";
 
-interface Props {
-  imageUri: string;
-}
-
-const Shoe = ({ imageUri }: Props) => {
+const Shoe = (props: Product) => {
   return (
-    <TouchableOpacity style={styles.container} activeOpacity={0.6}>
-      <Image
-        source={{ uri: imageUri }}
-        style={styles.img}
-        resizeMode="contain"
-      />
-    </TouchableOpacity>
+    <Link
+      href={{
+        pathname: "/details",
+        params: { id: props.id },
+      }}
+      asChild
+    >
+      <TouchableOpacity style={styles.container} activeOpacity={0.6}>
+        <Image
+          source={{ uri: props.image }}
+          style={styles.img}
+          resizeMode="contain"
+        />
+      </TouchableOpacity>
+    </Link>
   );
 };
 
